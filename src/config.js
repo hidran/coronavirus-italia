@@ -1,7 +1,8 @@
 const mapBoxToken = 'pk.eyJ1IjoiaGlkcmFuIiwiYSI6ImNrN3Z4YXd1ZzFidGUzZXBneThlNjhlZ2cifQ.MA7_4jQcrFPSxRv5kwldGg';
-function getConfig() {
+export function getConfig() {
     return  {
         mapBoxToken :mapBoxToken ,
+        mapZoom:6,
         dataNationUrl: 'https://github.com/pcm-dpc/COVID-19/blob/master/dati-json/dpc-covid19-ita-andamento-nazionale.json',
         dataRegionUrl: 'https://raw.githubusercontent.com/pcm-dpc/COVID-19/master/dati-json/dpc-covid19-ita-regioni.json',
         tileId:'mapbox/streets-v11',
