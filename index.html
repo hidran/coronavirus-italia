@@ -12,8 +12,8 @@
             crossorigin=""></script>
 
         <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-      
-        <script src="dist/index.js"></script>
+
+        <script src="index.js"></script>
 
         <link rel="stylesheet" href="css/style.css">
         <script type="text/javascript">
@@ -28,12 +28,12 @@
         <h1>Corona Virus, COVID19, trend in Italy</h1>
 
         <div class="main container-fluid">
-     
+
 
             <section class="row data">
-
-                <div id="latest_div" class="col"></div>
-                <div class="map  col">
+                <div id="mapid" class="col-md-4"></div>
+                <div id="latest_div" class="col-md-4"></div>
+                <div class="map col-md-4">
                     <span>Select region</span>
                     <select name="regions" id="regions">
                         <option selected value="Lombardia">Lombardia</option>
@@ -43,7 +43,7 @@
                     <div id="all_div"></div>
 
                 </div>
-                <div id="mapid" class="col"></div>
+
             </section>
         </div>
     </body>

@@ -1,5 +1,6 @@
 const path = require('path')
 const UglifyJSPlugin = require('uglifyjs-webpack-plugin')
+const CopyPlugin = require('copy-webpack-plugin');
 const webpack = require('webpack')
 const env = process.env.WEBPACK_ENV || 'development'
 
@@ -11,23 +12,27 @@ const COPYRIGHT = `Add your copyright here. It is included at the beginning of y
 
 const OUTPUT_FILE = `${OUTPUT_FILENAME}.js`
 const OUTPUT_FILE_MIN = `${OUTPUT_FILENAME}.min.js`
-
-const { plugins, outputfile, mode } = env == 'build' 
-	? { 
+const htmlsources = [
+	{ from: 'css', to: 'css' },
+	{from:'images', to :'images'},
+	{ from: 'index.html', to: 'index.html' },
+];
+const { plugins, outputfile, mode } = env == 'build'
+	? {
 		plugins: [
-			new UglifyJSPlugin(), 
-			new webpack.BannerPlugin(COPYRIGHT)
-		], 
+			new UglifyJSPlugin(),
+			new CopyPlugin(htmlsources)
+		],
 		outputfile: OUTPUT_FILE_MIN,
 		mode: 'production'
-	} 
-	: { 
+	}
+	: {
 		plugins: [
-			new webpack.BannerPlugin(COPYRIGHT)
-		], 
+			new CopyPlugin(htmlsources)
+		],
 		outputfile: OUTPUT_FILE,
 		mode: 'development'
-	} 
+	}
 
 module.exports = {
 	mode,
@@ -49,7 +54,13 @@ module.exports = {
 					presets: ['@babel/preset-env']
 				}
 			}
-		}]
+        },
+
+            {
+              test: /\.css$/i,
+              use: ['style-loader', 'css-loader'],
+            }
+        ]
 	},
 	devtool: 'source-map',
 	plugins: plugins
