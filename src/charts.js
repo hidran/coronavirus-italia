@@ -63,7 +63,7 @@ export function drawLatestVisualization(eleid, dataRegion) {
         bar: {
             groupWidth: '75%'
         },
-        isStacked: true,
+        isStacked: true
     };
     var chart = new google.visualization.ColumnChart(div);
 

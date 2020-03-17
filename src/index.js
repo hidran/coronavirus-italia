@@ -1,10 +1,9 @@
 /*
 Data provided by
 */
-
-import {getCachedData,
-     getData,isSameDay,
-
+import '../css/style.css';
+import {
+     getData,
       filterData,
       showData,
       updateGraph,
@@ -99,8 +98,9 @@ setLatLong(mymap);
 
                         showData(name);
                         combo.value = name
-                        const html = '<p>'+ name  + '  '+casi +' casi</p>';
-                              html += '<p>Deceduti '+ deceduti  +' </p>'
+                        let html = '<p>'+ name  + '  '+casi +' casi</p>';
+                              html += '<p>Deceduti '+ deceduti  +' </p>';
+                              return html;
                     },{autoClose: true});
 
 
