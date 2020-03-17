@@ -1,0 +1,53 @@
+<html lang="it">
+
+    <head>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+            integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
+            integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
+            crossorigin="" />
+        <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"
+            integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
+            crossorigin=""></script>
+
+        <script src="https://momentjs.com/downloads/moment.js"></script>
+        <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+        <script src="js/helpers.js"></script>
+        <script src="js/index.js"></script>
+        <script src="js/config.js"></script>
+
+        <link rel="stylesheet" href="css/style.css">
+        <script type="text/javascript">
+            google.charts.load('current', {
+                packages: ['corechart', 'bar']
+            });
+        </script>
+
+    </head>
+
+    <body>
+        <h1>Corona Virus, COVID19, trend in Italy</h1>
+
+        <div class="main container-fluid">
+     
+
+            <section class="row data">
+
+                <div id="latest_div" class="col"></div>
+                <div class="map  col">
+                    <span>Select region</span>
+                    <select name="regions" id="regions" onchange="updateGraph(this)">
+                        <option selected value="Lombardia">Lombardia</option>
+
+
+                    </select>
+                    <div id="all_div"></div>
+
+                </div>
+                <div id="mapid" class="col"></div>
+            </section>
+        </div>
+    </body>
+
+</html>
