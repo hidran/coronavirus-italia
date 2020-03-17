@@ -11,20 +11,15 @@ body{
 .main{
     margin-top:40px;
 }
-
-#all_div, #latest_div{
-
-   margin:10px;
-   border-radius:40px;
-
-   height: 600px;
+#all_div, #latest_div,#mapid{
+   margin:14px;
+   border-radius:14px;
+   height: 550px;
+    width:100%;
+    max-width: 640px;
 }
 
-#mapid{
-    width: 600px;
 
-   height: 500px;
-}
 section.data{
     display: flex;
 }

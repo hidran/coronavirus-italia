@@ -30,21 +30,26 @@
         <div class="main container-fluid">
 
 
-            <section class="row data">
-                <div id="mapid" class="col-md-4"></div>
-                <div id="latest_div" class="col-md-4"></div>
-                <div class="map col-md-4">
-                    <span>Select region</span>
-                    <select name="regions" id="regions">
+            <div class="row">
+                <div id="mapid" class="col-md-6"></div>
+
+                <div class="map col-md-6">
+
+                    <form>
+                        <div class="form-group">
+                            <label for="regions">Select region</label>
+                    <select class="form-control" name="regions" id="regions">
                         <option selected value="Lombardia">Lombardia</option>
 
 
                     </select>
+                        </div>
+                    </form>
                     <div id="all_div"></div>
-
+                    <div id="latest_div"></div>
                 </div>
 
-            </section>
+            </div>
         </div>
     </body>
 
