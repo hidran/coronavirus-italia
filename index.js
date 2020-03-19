@@ -11186,7 +11186,7 @@ module.exports = __webpack_require__(/*! ./modules/_core */ "./node_modules/core
 var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
 exports = ___CSS_LOADER_API_IMPORT___(false);
 // Module
-exports.push([module.i, "body{\r\n    margin:5px;\r\n    padding:0;\r\n    text-align:center;\r\n    color:#fff;\r\n    background-color:#222;\r\n\r\n\r\n\r\n         }\r\n.main{\r\n    margin-top:40px;\r\n}\r\n#all_div, #latest_div,#mapid{\r\n   margin:14px;\r\n   border-radius:14px;\r\n   height: 550px;\r\n    width:100%;\r\n    max-width: 640px;\r\n}\r\n\r\n\r\nsection.data{\r\n    display: flex;\r\n}\r\n", ""]);
+exports.push([module.i, "body{\r\n    margin:5px auto;\r\n    padding:0;\r\n    text-align:center;\r\n    color:#fff;\r\n    background-color:#222;\r\n\r\n\r\n\r\n         }\r\n.main{\r\n    margin-top:40px;\r\n}\r\n#all_div, #latest_div,#mapid{\r\n   margin:14px;\r\n   border-radius:14px;\r\n   height: 550px;\r\n    width:100%;\r\n    max-width: 640px;\r\n}\r\n\r\n\r\nsection.data{\r\n    display: flex;\r\n}\r\n", ""]);
 // Exports
 module.exports = exports;
 
@@ -11723,7 +11723,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 
 function isSameDay(a, b) {
-  console.log(a, b);
   return a.getFullYear() === b.getFullYear() && a.getMonth() === b.getMonth() && a.getDate() === b.getDate();
 }
 function getCachedData() {
@@ -11787,7 +11786,6 @@ function _getData() {
             regions = {};
             todaysData = data.filter(function (ele) {
               var today = new Date();
-              var yesterday = new Date(today.getFullYear(), today.getMonth(), today.getDate() - 1);
               return isSameDay(new Date(ele.data), today);
             });
 
@@ -11800,7 +11798,7 @@ function _getData() {
             }
 
             data.forEach(function (reg) {
-              regions[reg.denominazione_regione] = {
+              regions[reg['denominazione_regione']] = {
                 lat: reg.lat,
                 "long": reg["long"]
               };
@@ -11829,7 +11827,7 @@ function showData() {
   var ele = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'all_div';
   getData().then(function (res) {
     var data = res.data.filter(function (data) {
-      return data.denominazione_regione === region;
+      return data['denominazione_regione'] === region;
     });
     Object(_charts__WEBPACK_IMPORTED_MODULE_1__["drawVisualization"])(ele, data, region);
   })["catch"](function (e) {
@@ -11842,7 +11840,7 @@ function updateGraph(ele) {
 function filterData(dati) {
   var region = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'Lombardia';
   return dati.filter(function (data) {
-    return data.denominazione_regione === region;
+    return data['denominazione_regione'] === region;
   });
 }
 function setLatLong(_x) {
@@ -11856,7 +11854,7 @@ function _setLatLong() {
       while (1) {
         switch (_context2.prev = _context2.next) {
           case 0:
-            handleLocationError = function _ref(browserHasGeolocation, infoWindow, pos) {};
+            handleLocationError = function _ref() {};
 
             // Try HTML5 geolocation.
             if (navigator.geolocation) {
@@ -11866,11 +11864,11 @@ function _setLatLong() {
 
                 map.setView([position.coords.latitude, position.coords.longitude], mapZoom);
               }, function () {
-                handleLocationError(true, infoWindow, map.getCenter());
+                handleLocationError();
               });
             } else {
               // Browser doesn't support Geolocation
-              handleLocationError(false, infoWindow, map.getCenter());
+              handleLocationError();
             }
 
           case 2:
