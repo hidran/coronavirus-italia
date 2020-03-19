@@ -11749,7 +11749,7 @@ function getCachedData() {
       return cacheData;
     }
   } catch (e) {
-    return ret;
+    return res;
   }
 }
 function getData() {
