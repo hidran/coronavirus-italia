@@ -3,6 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="5a855d45-7986-4867-9c3e-d3fa8e226eae" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/css/style.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/helpers.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/helpers.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -34,6 +35,7 @@
     <property name="node.js.path.for.package.tslint" value="project" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="nodejs_package_manager_path" value="npm" />
   </component>
   <component name="RunManager">
     <configuration name="index.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/coronavirus-italia/dist/index.html" useBuiltInWebServerPort="true">
@@ -56,7 +58,7 @@
       <option name="presentableId" value="Default" />
       <updated>1584485293847</updated>
       <workItem from="1584485317332" duration="4687000" />
-      <workItem from="1584651376287" duration="85000" />
+      <workItem from="1584651376287" duration="1060000" />
     </task>
     <servers />
   </component>
