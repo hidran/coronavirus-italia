@@ -37,7 +37,7 @@ export function getCachedData() {
         }
 
     } catch (e) {
-        return ret;
+        return res;
     }
 
 }
@@ -69,7 +69,7 @@ export async function getData() {
                 today.getDate() - 1
             );
 
-            return isSameDay(new Date(ele.data), today) 
+            return isSameDay(new Date(ele.data), today)
         }
     );
     if(!todaysData.length){
@@ -81,8 +81,8 @@ export async function getData() {
                     today.getMonth(),
                     today.getDate() - 1
                 );
-    
-                return isSameDay(new Date(ele.data), yesterday) 
+
+                return isSameDay(new Date(ele.data), yesterday)
             }
         );
     }
@@ -151,6 +151,6 @@ if (navigator.geolocation) {
 
 
 function handleLocationError(browserHasGeolocation, infoWindow, pos) {
-  
+
 }
 }
