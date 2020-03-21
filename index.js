@@ -11186,7 +11186,7 @@ module.exports = __webpack_require__(/*! ./modules/_core */ "./node_modules/core
 var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
 exports = ___CSS_LOADER_API_IMPORT___(false);
 // Module
-exports.push([module.i, "body{\r\n    margin:5px auto;\r\n    padding:0;\r\n    text-align:center;\r\n    color:#fff;\r\n    background-color:#222;\r\n\r\n\r\n\r\n         }\r\n.main{\r\n    margin-top:40px;\r\n}\r\n#all_div, #latest_div,#mapid{\r\n   margin:14px;\r\n   border-radius:14px;\r\n   height: 550px;\r\n    width:100%;\r\n    max-width: 640px;\r\n}\r\n\r\n\r\nsection.data{\r\n    display: flex;\r\n}\r\n", ""]);
+exports.push([module.i, "body{\r\n    margin:5px auto;\r\n    padding:0;\r\n    text-align:center;\r\n    color:#fff;\r\n    background-color:#222;\r\n\r\n\r\n         }\r\n.main{\r\n    margin-top:40px;\r\n}\r\n#all_div, #latest_div,#mapid{\r\n   margin:14px;\r\n   border-radius:14px;\r\n   height: 550px;\r\n    width:100%;\r\n    max-width: 640px;\r\n}\r\n\r\n\r\nsection.data{\r\n    display: flex;\r\n}\r\n", ""]);
 // Exports
 module.exports = exports;
 
@@ -11766,7 +11766,7 @@ function _getData() {
             cacheData = getCachedData();
             console.log(cacheData);
 
-            if (!cacheData.data.length) {
+            if (!(cacheData && cacheData.data.length)) {
               _context.next = 4;
               break;
             }
