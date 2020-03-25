@@ -4,7 +4,7 @@ const CopyPlugin = require('copy-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ScriptExtHtmlWebpackPlugin = require('script-ext-html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
-const webpack = require('webpack')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const env = process.env.WEBPACK_ENV || 'development'
 
 // Simply configure those 4 variables:
@@ -37,6 +37,8 @@ const {plugins, outputfile, mode} = env == 'build'
             new ScriptExtHtmlWebpackPlugin({
                 defaultAttribute: 'async'
             }),
+
+            new MiniCssExtractPlugin({filename:OUTPUT_FILENAME +'.css'}),
             new CleanWebpackPlugin()
         ],
         outputfile: OUTPUT_FILE_MIN,
@@ -49,6 +51,8 @@ const {plugins, outputfile, mode} = env == 'build'
                     defaultAttribute: 'async'
                 }
             ),
+
+            new MiniCssExtractPlugin({filename:OUTPUT_FILENAME +'.css'}),
             new CleanWebpackPlugin()
         ],
         outputfile: OUTPUT_FILE,
@@ -80,7 +84,7 @@ module.exports = {
 
             {
                 test: /\.css$/i,
-                use: ['style-loader', 'css-loader'],
+                use: [MiniCssExtractPlugin.loader, 'css-loader'],
             }
         ]
     },

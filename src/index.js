@@ -9,7 +9,6 @@ import {
       updateGraph,
       setLatLong
     } from './helpers';
-
     import {
          drawLatestVisualization,
          drawVisualization
