@@ -11905,7 +11905,6 @@ Data provided by
 
 
 document.addEventListener('DOMContentLoaded', function () {
-  //test
   Object(_helpers__WEBPACK_IMPORTED_MODULE_1__["getData"])().then(function (regdata) {
     console.log(regdata);
     var regions = regdata.regions,
@@ -12002,4 +12001,4 @@ module.exports = __webpack_require__(/*! ./src/index.js */"./src/index.js");
 
 /******/ });
 });
-//# sourceMappingURL=index.js.map
+//# sourceMappingURL=main.9fba33efa3b566c7eca9.bundle.js.map
