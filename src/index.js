@@ -20,16 +20,11 @@ import{getConfig}  from './config';
 
 
 
-
-
-
 document.addEventListener('DOMContentLoaded', function(){
-//test
     getData().then( regdata =>{
 
         console.log(regdata)
         const { regions, data, todaysData}= regdata;
-
         const regionArr = Object.keys(regions);
 
         google.charts.setOnLoadCallback(()=>{

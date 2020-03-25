@@ -39,19 +39,13 @@ export function getCachedData() {
     } catch (e) {
         return res;
     }
-
 }
-
 export async function getData() {
-
     let cacheData = getCachedData();
     console.log(cacheData);
-
-    if (cacheData.data.length) {
-
+    if (cacheData && cacheData.data.length) {
         return cacheData;
     }
-
     const {
         dataRegionUrl
     } = getConfig();
