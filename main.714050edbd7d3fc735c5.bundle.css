@@ -9,12 +9,15 @@ body{
 .main{
     margin-top:40px;
 }
-#all_div, #latest_div,#mapid{
+div.row{
+    margin-top:20px;
+}
+#all_div, #latest_div,#reg-piechart,#mapid{
    margin:14px;
    border-radius:14px;
    height: 550px;
     width:100%;
-    max-width: 640px;
+   min-width: 640px;
 }
 
 
@@ -23,4 +26,5 @@ section.data{
 }
 
 
-/*# sourceMappingURL=main.c4a6d7e91f44a9acdd84.bundle.css.map*/
+
+/*# sourceMappingURL=main.714050edbd7d3fc735c5.bundle.css.map*/

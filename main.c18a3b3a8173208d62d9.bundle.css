@@ -1,0 +1,30 @@
+body{
+    margin:5px auto;
+    padding:2px;
+    text-align:center;
+    color:#fff;
+    background-color:#222;
+
+         }
+.main{
+    margin-top:40px;
+}
+.row{
+    margin-top:20px;
+}
+#all_div, #latest_div,#mapid{
+   margin:14px;
+   border-radius:14px;
+   height: 550px;
+    width:100%;
+   min-width: 640px;
+}
+
+
+section.data{
+    display: flex;
+}
+#reg-piechart{min-width: 400px; height: 500px;}
+
+
+/*# sourceMappingURL=main.c18a3b3a8173208d62d9.bundle.css.map*/

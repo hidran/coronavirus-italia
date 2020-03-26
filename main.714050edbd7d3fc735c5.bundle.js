@@ -11190,13 +11190,33 @@ module.exports = g;
 /*!***********************!*\
   !*** ./src/charts.js ***!
   \***********************/
-/*! exports provided: drawVisualization, drawLatestVisualization */
+/*! exports provided: drawPie, drawVisualization, drawLatestVisualization */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "drawPie", function() { return drawPie; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "drawVisualization", function() { return drawVisualization; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "drawLatestVisualization", function() { return drawLatestVisualization; });
+function drawPie(eleid, regionData) {
+  var region = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 'Lombardia';
+  var div = document.getElementById(eleid);
+  var dataRegion = regionData.filter(function (reg) {
+    return reg['denominazione_regione'] === region;
+  });
+  var reg = dataRegion[dataRegion.length - 1];
+  var dati = [['Casi', 'Totali'], ['Totali casi ' + new Number(reg.totale_casi).toLocaleString(), reg.totale_casi], ['Tamponi ' + reg.tamponi.toLocaleString(), reg.tamponi], ['Deceduti ' + reg.deceduti.toLocaleString(), reg.deceduti], ['In ospedale ' + reg.totale_ospedalizzati.toLocaleString(), reg.totale_ospedalizzati], ['Positivi', +reg['totale_attualmente_positivi'].toLocaleString()], ['Ricoverati', +reg['ricoverati_con_sintomi'].toLocaleString()]];
+  var data = google.visualization.arrayToDataTable(dati);
+  var options = {
+    legend: true,
+    pieSliceText: 'value',
+    title: 'Dati di ' + region + ', oggi: ' + moment(reg.data).format('DD/MM/YYYY'),
+    pieStartAngle: 100
+  }; //  alert(JSON.stringify(dati))
+
+  var chart = new google.visualization.PieChart(document.getElementById('reg-piechart'));
+  chart.draw(data, options);
+}
 function drawVisualization(eleid, dataRegion) {
   var region = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 'Lombardia';
   var div = document.getElementById(eleid);
@@ -11279,7 +11299,7 @@ function getConfig() {
 /*!************************!*\
   !*** ./src/helpers.js ***!
   \************************/
-/*! exports provided: isSameDay, getCachedData, getData, showData, updateGraph, filterData, setLatLong */
+/*! exports provided: isSameDay, getCachedData, getData, showData, updateGraph, filterData, setLatLong, renderJsonTable */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -11291,8 +11311,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updateGraph", function() { return updateGraph; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "filterData", function() { return filterData; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "setLatLong", function() { return setLatLong; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "renderJsonTable", function() { return renderJsonTable; });
 /* harmony import */ var _config__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./config */ "./src/config.js");
 /* harmony import */ var _charts__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./charts */ "./src/charts.js");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
@@ -11407,6 +11434,7 @@ function showData() {
       return data['denominazione_regione'] === region;
     });
     Object(_charts__WEBPACK_IMPORTED_MODULE_1__["drawVisualization"])(ele, data, region);
+    Object(_charts__WEBPACK_IMPORTED_MODULE_1__["drawPie"])('reg-piechart', data, region);
   })["catch"](function (e) {
     return alert(e);
   });
@@ -11458,6 +11486,177 @@ function _setLatLong() {
   return _setLatLong.apply(this, arguments);
 }
 
+function renderJsonTable(tableId, tabledata) {
+  var data = tabledata.map(function (ele) {
+    return _objectSpread({}, ele, {
+      data: ele.data.substring(0, 10)
+    });
+  }).sort(function (d1, d2) {
+    return d1.data < d2.data;
+  });
+  var numberWidth = 200;
+  var formatterParams = {
+    decimal: ',',
+    thousand: '.',
+    symbol: '£',
+    symbolAfter: 'E',
+    precision: false
+  };
+  var cols = [{
+    field: 'data',
+    title: 'Data',
+    sorter: 'date',
+    formatterParams: {
+      inputFormat: 'YYYY-MM-DD',
+      outputFormat: 'DD/MM/YY',
+      invalidPlaceholder: '(invalid date)'
+    },
+    width: numberWidth,
+    sorterParams: {
+      format: 'YYYY-MM-DD'
+    }
+  }, {
+    field: 'denominazione_regione',
+    title: 'Regione',
+    width: 250,
+    headerFilter: 'select'
+  }, {
+    field: 'totale_casi',
+    title: 'Totale casi',
+    width: numberWidth,
+    formatterParams: formatterParams,
+    sorter: 'number'
+  }, {
+    field: 'deceduti',
+    title: 'Deceduti',
+    width: numberWidth,
+    formatterParams: formatterParams,
+    sorter: 'number'
+  }, {
+    field: 'totale_ospedalizzati',
+    title: 'Totale ospedalizzati',
+    width: numberWidth,
+    formatterParams: formatterParams,
+    sorter: 'number'
+  }, {
+    field: 'totale_attualmente_positivi',
+    title: 'totale positivi',
+    width: numberWidth,
+    formatterParams: formatterParams,
+    sorter: 'number'
+  }, {
+    field: 'ricoverati_con_sintomi',
+    title: 'Ricoverati con sintomi',
+    width: numberWidth,
+    formatterParams: formatterParams,
+    sorter: 'number'
+  }, {
+    field: 'nuovi_attualmente_positivi',
+    title: 'Nuovi positivi',
+    width: numberWidth,
+    formatterParams: formatterParams,
+    sorter: 'number'
+  }, {
+    field: 'terapia_intensiva',
+    title: 'Terapia intensiva',
+    width: numberWidth,
+    formatterParams: formatterParams,
+    sorter: 'number'
+  }, {
+    field: 'isolamento_domiciliare',
+    title: 'Isolamento domiciliare',
+    width: numberWidth,
+    formatterParams: formatterParams,
+    sorter: 'number'
+  }, {
+    field: 'dimessi_guariti',
+    title: 'Dismessi guariti',
+    width: numberWidth,
+    formatterParams: formatterParams,
+    sorter: 'number'
+  }, {
+    title: 'Tamponi',
+    field: 'tamponi',
+    width: numberWidth,
+    formatterParams: formatterParams,
+    sorter: 'number'
+  }];
+  var langs = {
+    'en-gb': {
+      'columns': {
+        'data': 'Date',
+        //replace the title of column name with the value 'Name',
+        'deceduti': 'date'
+      },
+      'ajax': {
+        'loading': 'Loading',
+        //ajax loader text
+        'error': 'Error' //ajax error text
+
+      },
+      'groups': {
+        //copy for the auto generated item count in group header
+        'item': 'item',
+        //the singular  for item
+        'items': 'items' //the plural for items
+
+      },
+      'pagination': {
+        'page_size': 'Page Size',
+        //label for the page size select element
+        'first': 'First',
+        //text for the first page button
+        'first_title': 'First Page',
+        //tooltip text for the first page button
+        'last': 'Last',
+        'last_title': 'Last Page',
+        'prev': 'Prev',
+        'prev_title': 'Prev Page',
+        'next': 'Next',
+        'next_title': 'Next Page'
+      },
+      'headerFilters': {
+        'default': 'filter column...',
+        //default header filter placeholder text
+        'columns': {
+          'name': 'filter name...' //replace default header filter text for column name
+
+        }
+      }
+    }
+  };
+  var table = new Tabulator('#' + tableId, {
+    langs: langs,
+    //  groupBy:'denominazione_regione',
+    width: '960px',
+    height: 405,
+    // set height of table (in CSS or here), this enables the Virtual DOM and improves render speed dramatically (can be any valid css height value)
+    data: data,
+    //assign data to table
+    layout: 'fitDataFill',
+    responsiveLayout: 'hide',
+    columns: cols,
+    pagination: 'local',
+    paginationSize: 50,
+    paginationSizeSelector: [10, 20, 50, 100],
+    movableColumns: true
+  });
+  table.setSort([//     {column:"denominazione_regione", dir:"asc"}, //then sort by this second
+  {
+    column: "date",
+    dir: "desc"
+  } //sort by this first
+  ]);
+  var trigger = document.querySelector('#sort-trigger');
+  /*
+      trigger.addEventListener('click', function () {
+          const f = document.querySelector('#sort-field');
+          const d = document.querySelector('#sort-direction');
+          table.setSort(f.value, d.value);
+      });
+      */
+}
+
 /***/ }),
 
 /***/ "./src/index.js":
@@ -11487,10 +11686,12 @@ document.addEventListener('DOMContentLoaded', function () {
     var regions = regdata.regions,
         data = regdata.data,
         todaysData = regdata.todaysData;
+    Object(_helpers__WEBPACK_IMPORTED_MODULE_1__["renderJsonTable"])('corona-table', data);
     var regionArr = Object.keys(regions);
     google.charts.setOnLoadCallback(function () {
       Object(_charts__WEBPACK_IMPORTED_MODULE_2__["drawVisualization"])('all_div', Object(_helpers__WEBPACK_IMPORTED_MODULE_1__["filterData"])(data));
       Object(_charts__WEBPACK_IMPORTED_MODULE_2__["drawLatestVisualization"])('latest_div', todaysData);
+      Object(_charts__WEBPACK_IMPORTED_MODULE_2__["drawPie"])('reg-piechart', todaysData);
     });
     var combo = document.querySelector('#regions');
     combo.addEventListener('change', function (e) {
@@ -11578,4 +11779,4 @@ module.exports = __webpack_require__(/*! ./src/index.js */"./src/index.js");
 
 /******/ });
 });
-//# sourceMappingURL=main.c4a6d7e91f44a9acdd84.bundle.js.map
+//# sourceMappingURL=main.714050edbd7d3fc735c5.bundle.js.map
