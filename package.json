@@ -37,5 +37,9 @@
     "uglifyjs-webpack-plugin": "^2.2.0",
     "webpack": "^4.42.0",
     "webpack-cli": "^3.3.11"
+  },
+  "dependencies": {
+    "moment": "^2.24.0",
+    "tabulator-tables": "^4.5.3"
   }
 }

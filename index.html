@@ -1,56 +1,107 @@
 <html lang="it">
 
-    <head>
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
-            integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+<head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
-        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
-            integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
-            crossorigin="" />
-        <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
+          integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
+          crossorigin=""/>
+    <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"
             integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
             crossorigin=""></script>
 
-        <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script defer src=" https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment-with-locales.min.js"></script>
+    <link href="https://unpkg.com/tabulator-tables@4.5.3/dist/css/tabulator.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tabulator/4.4.3/css/tabulator_midnight.min.css"
+          integrity="sha256-EOT8E6UbdyInwTrDMsT6AWEfdycM3VH4Xsg6JeG5R00=" crossorigin="anonymous"/>
+    <script defer type="text/javascript"
+            src="https://unpkg.com/tabulator-tables@4.5.3/dist/js/tabulator.min.js"></script>
 
 
+    <script type="text/javascript">
+        google.charts.load('current', {
+            packages: ['corechart', 'bar']
+        });
+    </script>
 
-        <link rel="stylesheet" href="css/main.css">
-        <script type="text/javascript">
-            google.charts.load('current', {
-                packages: ['corechart', 'bar']
-            });
-        </script>
+</head>
 
-    </head>
+<body>
+<h1>Corona Virus, COVID19, trend in Italia</h1>
 
-    <body>
-        <h1>Corona Virus, COVID19, trend in Italy</h1>
+<div class="main container-fluid">
 
-        <div class="main container-fluid">
+    <div class="row  justify-content-md-center">
+        <div class="col-10">
+            <h2>Dati giorno per giorno</h2>
+            <div id="corona-table"></div>
+        </div>
+    </div>
 
+    <div class="row"><div class="col-12 mt-3"> </div></div>
 
-            <div class="row">
-                <div id="mapid" class="col-md-6"></div>
+    <div class="row align-content-center">
+        <div class="col-md-12   justify-content-md-center">
+            <h2>Dati giorno per giorno per regione</h2>
+            <form>
+                <div class="form-group align-content-center offset-md-2 col-md-8 align-content-center">
 
-                <div class="map col-md-6">
-
-                    <form>
-                        <div class="form-group">
-                            <label for="regions">Select region</label>
                     <select class="form-control" name="regions" id="regions">
                         <option selected value="Lombardia">Lombardia</option>
 
 
                     </select>
-                        </div>
-                    </form>
-                    <div id="all_div"></div>
-                    <div id="latest_div"></div>
                 </div>
+            </form>
+        </div>
+
+    </div>
+        <div class="row"><div class="col-12 mt-3 pt-3"> </div></div>
+    <div class="row  justify-content-md-center">
+        <div class="col-md-6">
+            <div id="reg-piechart">
+            </div>
+            <h2>Mappa nazionale</h2>
+            <div id="mapid"></div>
+
+        </div>
+
+        <div class=" col-md-6">
+            <div id="all_div"></div>
+            <h2>Trend nazionale</h2>
+            <div id="latest_div">
 
             </div>
         </div>
-    </body>
+
+    </div>
+</div>
+
+<footer class="mastfoot mt-auto">
+    <div class="inner">
+        <p>
+            Il progetto ha solo come scopo
+            una demo su come consumare API
+            con javascript .
+
+        </p>
+        <p>I dati mostrati sono quelli <a href="https://github.com/pcm-dpc/COVID-19/">disponibili dalla protezione
+            civile su github:</a>
+        </p>
+
+        <code>
+            linkedin : <a class="nav-link" target="_blank" href="https://linkedin.com/in/hidran">https://linkedin.com/in/hidran</a>
+            sito web:<a class="nav-link" target="_blank" href="https://www.hidran.it">www.hidran.it</a>
+            corsi udemu : <a class="nav-link" target="_blank" href="https://www.udemy.com/user/hidranarias">http://www.udemy.com/user/hidranarias</a>
+        </code>
+
+
+    </div>
+
+</footer>
+
+</body>
 
 </html>

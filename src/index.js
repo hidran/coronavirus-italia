@@ -3,15 +3,17 @@ Data provided by
 */
 import '../css/style.css';
 import {
+
      getData,
       filterData,
       showData,
       updateGraph,
-      setLatLong
+      setLatLong,
+     renderJsonTable
     } from './helpers';
     import {
          drawLatestVisualization,
-         drawVisualization
+         drawVisualization, drawPie
 
        } from './charts';
 import{getConfig}  from './config';
@@ -24,6 +26,7 @@ document.addEventListener('DOMContentLoaded', function(){
 
         console.log(regdata)
         const { regions, data, todaysData}= regdata;
+        renderJsonTable('corona-table', data);
         const regionArr = Object.keys(regions);
 
         google.charts.setOnLoadCallback(()=>{
@@ -31,6 +34,7 @@ document.addEventListener('DOMContentLoaded', function(){
             drawVisualization('all_div',filterData(data));
 
             drawLatestVisualization('latest_div',todaysData);
+            drawPie('reg-piechart', todaysData)
         });
         const combo = document.querySelector('#regions');
         combo.addEventListener('change',(e)=>{
