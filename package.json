@@ -40,6 +40,6 @@
   },
   "dependencies": {
     "moment": "^2.24.0",
-    "tabulator-tables": "^4.5.3"
+    "tabulator-tables": "^4.9.3"
   }
 }
